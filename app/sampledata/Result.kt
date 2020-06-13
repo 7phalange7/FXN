@@ -1,5 +1,3 @@
-package com.utkarsh.fxn.data
-
 
 import com.google.gson.annotations.SerializedName
 
@@ -13,6 +11,8 @@ data class Result(
     @SerializedName("genre_ids")
     val genreIds: List<Int>,
     val id: Int,
+    @SerializedName("known_for")
+    val knownFor: List<KnownFor>,
     @SerializedName("known_for_department")
     val knownForDepartment: String,
     @SerializedName("media_type")
@@ -40,5 +40,4 @@ data class Result(
     val voteAverage: Double,
     @SerializedName("vote_count")
     val voteCount: Int
-
 )

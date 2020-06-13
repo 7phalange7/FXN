@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.utkarsh.fxn.databinding.FragmentMywatchlistBinding
+import com.utkarsh.fxn.util.hideKeyboard
 
 class MyWatchlistFragment : Fragment(){
 
@@ -26,7 +27,7 @@ class MyWatchlistFragment : Fragment(){
                 v.findNavController().navigate(MyWatchlistFragmentDirections
                     .actionMyWatchlistFragmentToSearchResultFragment(v.text.trim().toString()))
 
-               // hideKeyboard()
+                hideKeyboard()
             }
             else
             {
