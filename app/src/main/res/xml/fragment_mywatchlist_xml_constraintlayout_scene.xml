@@ -9,7 +9,6 @@
         motion:duration="200">
        <KeyFrameSet>
        </KeyFrameSet>
-        <OnClick motion:targetId="@+id/search_fab" />
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
@@ -23,6 +22,24 @@
             motion:layout_constraintVertical_bias="0.31"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="wrap_content"
+            android:id="@+id/button"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="32dp"
+            android:layout_marginLeft="44dp"
+            android:layout_marginStart="44dp" />
+        <Constraint
+            android:layout_height="147dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="239dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/itemopen"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_editor_absoluteX="11dp" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">

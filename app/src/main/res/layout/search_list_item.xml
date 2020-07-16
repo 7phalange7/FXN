@@ -7,24 +7,34 @@
         <variable
             name="resultObject"
             type="com.utkarsh.fxn.data.Result" />
+        <variable
+            name="clicklistener"
+            type="com.utkarsh.fxn.ui.searchresult.SearchListAdapter.MovieClickListener" />
+        <variable
+            name="tvsearchVM"
+            type="com.utkarsh.fxn.ui.searchresult.tv.SearchTvViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:background="#FFFFFF">
+        android:layout_height="250dp"
+        android:background="@android:color/transparent"
+        android:onClick="@{() -> clicklistener.onClick(resultObject)}"
+        android:paddingBottom="20dp"
+        tools:background="@color/darkGrey">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/poster"
             android:layout_width="114dp"
             android:layout_height="170dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
             app:imageUrl="@{resultObject.posterPath}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.013"
             tools:srcCompat="@drawable/smol" />
 
         <TextView
@@ -32,42 +42,30 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/product_sans"
+            android:maxLines="1"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:customName="@{resultObject}"
-            android:textSize="23sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.047"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.161"
+            app:layout_constraintEnd_toEndOf="@+id/poster"
+            app:layout_constraintStart_toStartOf="@+id/poster"
+            app:layout_constraintTop_toBottomOf="@+id/poster"
             tools:text="The Mentalist" />
 
         <TextView
             android:id="@+id/item_year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="#FFFFFF"
             app:customYear="@{resultObject}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.112"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="@+id/item_name"
             app:layout_constraintTop_toBottomOf="@+id/item_name"
-            app:layout_constraintVertical_bias="1.0"
             tools:text="2008" />
-
-        <TextView
-            android:id="@+id/item_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{resultObject.mediaType}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.876"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/item_name"
-            app:layout_constraintVertical_bias="0.838"
-            tools:text="Series" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -76,16 +74,40 @@
             android:orientation="vertical"
             app:layout_constraintGuide_begin="417dp" />
 
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="18dp"
+            android:layout_height="0dp"
+            android:tint="#E4C84A"
+            app:layout_constraintBottom_toBottomOf="@+id/imdb_ratings"
+            app:layout_constraintDimensionRatio="h,1:1"
+            app:layout_constraintEnd_toEndOf="@+id/item_name"
+            app:layout_constraintTop_toTopOf="@+id/imdb_ratings"
+            app:srcCompat="@drawable/ic_baseline_star_24" />
+
         <TextView
-            android:id="@+id/imdb"
+            android:id="@+id/imdb_ratings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="7.8"
+            android:layout_marginEnd="2dp"
+            tools:text="8.2"
             app:imdbRating="@{resultObject}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/item_type"
-            app:layout_constraintStart_toEndOf="@+id/item_year"
-            app:layout_constraintTop_toBottomOf="@+id/item_name"
-            app:layout_constraintVertical_bias="0.834" />
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="@+id/item_year"
+            app:layout_constraintEnd_toStartOf="@+id/imageView3"
+            app:layout_constraintTop_toTopOf="@+id/item_year" />
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/imdb"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:textColor="#FFFFFF"-->
+        <!--            app:imdbMovieRating="@{resultObject}"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/item_type"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/item_year"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/item_name"-->
+        <!--            app:layout_constraintVertical_bias="0.834"-->
+        <!--            tools:text="7.8" />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

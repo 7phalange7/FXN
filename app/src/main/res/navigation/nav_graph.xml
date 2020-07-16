@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/nav_graph"
     app:startDestination="@id/myWatchlistFragment">
 
     <fragment
         android:id="@+id/myWatchlistFragment"
         android:name="com.utkarsh.fxn.ui.mywatchlist.MyWatchlistFragment"
-        android:label="MyWatchlistFragment" >
+        android:label="MyWatchlistFragment"
+        tools:layout="@layout/fragment_mywatchlist">
         <action
             android:id="@+id/action_myWatchlistFragment_to_searchResultFragment"
             app:destination="@id/searchResultFragment" />
+        <action
+            android:id="@+id/action_myWatchlistFragment_to_itemInfoFragment"
+            app:destination="@id/itemInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchResultFragment"
         android:name="com.utkarsh.fxn.ui.searchresult.SearchResultFragment"
-        android:label="SearchResultFragment" >
+        android:label="SearchResultFragment"
+        tools:layout="@layout/fragment_searchresult">
         <action
             android:id="@+id/action_searchResultFragment_to_itemInfoFragment"
             app:destination="@id/itemInfoFragment" />
@@ -26,4 +34,32 @@
         android:id="@+id/itemInfoFragment"
         android:name="com.utkarsh.fxn.ui.iteminfo.ItemInfoFragment"
         android:label="ItemInfoFragment" />
+    <action
+        android:id="@+id/action_global_itemInfoFragment"
+        app:destination="@id/itemInfoFragment" />
+    <fragment
+        android:id="@+id/searchTvFragment"
+        android:name="com.utkarsh.fxn.ui.searchresult.tv.SearchTvFragment"
+        android:label="SearchTvFragment" >
+
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_itemTvFragment"
+        app:destination="@id/itemTvFragment" />
+    <fragment
+        android:id="@+id/searchMovieFragment"
+        android:name="com.utkarsh.fxn.ui.searchresult.movie.SearchMovieFragment"
+        android:label="SearchMovieFragment" />
+    <fragment
+        android:id="@+id/itemTvFragment"
+        android:name="com.utkarsh.fxn.ui.iteminfo.tv.ItemTvFragment"
+        android:label="ItemTvFragment" >
+        <argument
+            android:name="itemiId"
+            app:argType="integer"
+            />
+    </fragment>
+
+
 </navigation>

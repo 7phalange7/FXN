@@ -61,7 +61,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
 
     //constraint,motion layout
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta7'
 
                     //moshi
                     //implementation "com.squareup.moshi:moshi:$version_moshi"
@@ -86,6 +86,10 @@ dependencies {
 
     //shadow image
     implementation 'com.yinglan.shadowimageview:shadowimageview:1.0.4'
+
+    //tabLayout and View Pager2
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+    implementation "com.google.android.material:material:1.1.0-beta01"
 
 
 }

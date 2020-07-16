@@ -4,6 +4,8 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import com.utkarsh.fxn.data.SearchResult
 import com.utkarsh.fxn.data.extIdMovie
 import com.utkarsh.fxn.data.extIdTv
+import com.utkarsh.fxn.data.tmdbMoviebyId.movieById
+import com.utkarsh.fxn.data.tmdbTvbyid.tvById
 import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -31,6 +33,20 @@ interface SearchApiService {
 
     ): Deferred<SearchResult>
 
+    @GET("search/movie?api_key=31e9cd376e3d390c0c023d727ed1f7db&language=en-US&")
+    fun searchForMovies(
+        @Query("query") title: String,
+        @Query("include_adult") tf: String = "false"
+
+    ): Deferred<SearchResult>
+
+    @GET("search/tv?api_key=31e9cd376e3d390c0c023d727ed1f7db&language=en-US&")
+    fun searchForTv(
+        @Query("query") title: String,
+        @Query("include_adult") tf: String = "false"
+
+    ): Deferred<SearchResult>
+
     @GET("movie/{id}/external_ids?api_key=31e9cd376e3d390c0c023d727ed1f7db")
     fun getImdbIdMovie(
         @Path("id") tmdbId: Int
@@ -40,6 +56,20 @@ interface SearchApiService {
     fun getImdbIdTv(
         @Path("id") tmdbId: Int
     ) : Deferred<extIdTv>
+
+    @GET("tv/{id}?api_key=31e9cd376e3d390c0c023d727ed1f7db&language=en-US")
+    fun getTvbyId(
+        @Path("id") tmdbId: Int
+    ) : Deferred<tvById>
+
+    @GET("movie/{id}?api_key=31e9cd376e3d390c0c023d727ed1f7db&language=en-US")
+    fun getMoviebyId(
+        @Path("id") tmdbId: Int
+    ) : Deferred<movieById>
+
+
+
+
 
     object SearchApi {
 

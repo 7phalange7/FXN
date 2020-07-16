@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.utkarsh.fxn.data.Result
 import com.utkarsh.fxn.databinding.SearchListItemBinding
 
-class SearchListAdapter : ListAdapter<Result, SearchListAdapter.ResultViewHolder>(ResultDiffCallback) {
+class SearchListAdapter (private val clickListener: MovieClickListener) :
+    ListAdapter<Result, SearchListAdapter.ResultViewHolder>(ResultDiffCallback) {
     object ResultDiffCallback : DiffUtil.ItemCallback<Result>() {
         override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
             return oldItem === newItem
@@ -20,11 +21,12 @@ class SearchListAdapter : ListAdapter<Result, SearchListAdapter.ResultViewHolder
 
     }
 
-    class ResultViewHolder (private var binding : SearchListItemBinding) :
-    RecyclerView.ViewHolder(binding.root) {
+    class ResultViewHolder(private var binding: SearchListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(result: Result) {
+        fun bind(result: Result, clickListener: MovieClickListener) {
             binding.resultObject = result
+            binding.clicklistener=clickListener
             binding.executePendingBindings()
         }
 
@@ -35,6 +37,11 @@ class SearchListAdapter : ListAdapter<Result, SearchListAdapter.ResultViewHolder
     }
 
     override fun onBindViewHolder(holder: ResultViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position)!!,clickListener)
+    }
+
+
+    class MovieClickListener(val listener: (id: Int) -> Unit) {
+        fun onClick(result: Result) = listener(result.id)
     }
 }

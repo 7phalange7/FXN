@@ -3,9 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="mwlVM"
+            type="com.utkarsh.fxn.ui.mywatchlist.MyWatchlistViewModel" />
+    </data>
+
+
 
     <androidx.constraintlayout.motion.widget.MotionLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/mwl_motionLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#9AC2ED"
@@ -18,10 +25,13 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:clickable="true"
+            android:focusedByDefault="true"
+            android:onClick="@{() -> mwlVM.fabclicked()}"
             app:backgroundTint="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_baseline_search_24" />
+            app:srcCompat="@drawable/ic_baseline_search_24"
+            android:focusable="true" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/searchBox"
@@ -61,5 +71,13 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/itemopen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            tools:layout_editor_absoluteX="90dp"
+            tools:layout_editor_absoluteY="608dp" />
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>
