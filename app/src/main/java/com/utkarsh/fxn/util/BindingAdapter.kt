@@ -2,10 +2,12 @@ package com.utkarsh.fxn.util
 
 import android.os.Build
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.net.toUri
+import androidx.core.view.isGone
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -16,7 +18,9 @@ import com.utkarsh.fxn.api.ImdbRatingApiService.ImdbRatingApi
 import com.utkarsh.fxn.api.SearchApiService
 import com.utkarsh.fxn.api.SearchApiService.SearchApi
 import com.utkarsh.fxn.data.Result
+import com.utkarsh.fxn.data.tmdbTvbyid.Genre
 import com.utkarsh.fxn.data.tmdbTvbyid.tvById
+import com.utkarsh.fxn.ui.iteminfo.tv.GenreListAdapter
 import com.utkarsh.fxn.ui.searchresult.SearchListAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -31,6 +35,16 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<Result>?) {
     val adapter = recyclerView.adapter as SearchListAdapter
     adapter.submitList(data)
 }
+
+@BindingAdapter("GenrelistData")
+fun bindGenreRecyclerView(recyclerView: RecyclerView, data: List<Genre>?) {
+    val adapter = recyclerView.adapter as GenreListAdapter
+    adapter.submitList(data)
+}
+
+
+
+
 
 
 
@@ -176,20 +190,18 @@ fun bindTvRatings(txtView: TextView,id: Int){
 }
 
 @BindingAdapter("imdbMovieRating")
-fun bindMovieRatings(txtView: TextView,id : Int){
+fun bindMovieRatings(txtView: TextView,id : String?){
 
     var viewModelJob = Job()
     val coroutineScope = CoroutineScope(Dispatchers.Main +viewModelJob)
 
 
+    val iid : String = id + ""
 
     coroutineScope.launch {
 
-            var getIdDeferred = SearchApi.retrofitService.getImdbIdMovie(id)
 
-            try {
-                var extIdObject =getIdDeferred.await()
-                var getOmdbTitleDeferred = ImdbRatingApi.retrofitService.getOmdbTitle(extIdObject.imdbId)
+                var getOmdbTitleDeferred = ImdbRatingApi.retrofitService.getOmdbTitle(iid)
                 try {
                     var omdbTitleObject = getOmdbTitleDeferred.await()
                     txtView.text = omdbTitleObject.imdbRating
@@ -197,11 +209,33 @@ fun bindMovieRatings(txtView: TextView,id : Int){
                     Log.v("utk","Failure in omdb api: ${e.message}")
                 }
 
-            } catch (e : Exception){
-                Log.v("utk","Failure in tmdb ext id api: ${e.message}")
-            }
 
         }
+
+}
+
+@BindingAdapter("rottenMovieRating")
+fun bindMovieRottenRatings(txtView: TextView,id : String?){
+
+    var viewModelJob = Job()
+    val coroutineScope = CoroutineScope(Dispatchers.Main +viewModelJob)
+
+
+    val iid : String = id + ""
+
+    coroutineScope.launch {
+
+
+        var getOmdbTitleDeferred = ImdbRatingApi.retrofitService.getOmdbTitle(iid)
+        try {
+            var omdbTitleObject = getOmdbTitleDeferred.await()
+            txtView.text = omdbTitleObject.ratings[1].value
+        } catch (e : Exception){
+            Log.v("utk","Failure in omdb api: ${e.message}")
+        }
+
+
+    }
 
 }
 
@@ -275,4 +309,16 @@ fun bindRatings(txtView: TextView,result: Result){
 fun integerTOstring(txtView: TextView,integer : Int)
 {
     txtView.text=""+integer
+}
+
+
+@BindingAdapter("visibleRatings")
+fun visibleRatings(view : View, txt: String?)
+{
+
+
+    if (txt == null || txt =="N/A")
+        view.visibility=View.GONE
+    else
+        view.visibility=View.VISIBLE
 }

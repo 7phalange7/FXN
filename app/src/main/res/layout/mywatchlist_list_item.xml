@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="tvFirebase"
+            type="com.utkarsh.fxn.data.firebase.TvFirebase" />
+        <variable
+            name="clickListener"
+            type="com.utkarsh.fxn.ui.mywatchlist.FirebaseRVAdapter.ItemClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:onClick="@{()-> clickListener.OnClick(tvFirebase)}"
+        android:background="@android:color/transparent"
+        android:paddingBottom="20dp"
+        tools:background="@color/darkGrey">
+
+        <ImageView
+            android:id="@+id/poster"
+            android:layout_width="114dp"
+            android:layout_height="170dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{tvFirebase.poster_path}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.013"
+            tools:srcCompat="@drawable/smol" />
+
+        <TextView
+            android:id="@+id/item_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/product_sans"
+            android:maxLines="1"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:text="@{tvFirebase.name}"
+            app:layout_constraintEnd_toEndOf="@+id/poster"
+            app:layout_constraintStart_toStartOf="@+id/poster"
+            app:layout_constraintTop_toBottomOf="@+id/poster"
+            tools:text="The Mentalist" />
+
+        <TextView
+            android:id="@+id/item_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:text="@{tvFirebase.year}"
+            app:layout_constraintStart_toStartOf="@+id/item_name"
+            app:layout_constraintTop_toBottomOf="@+id/item_name"
+            tools:text="2008" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="125dp" />
+
+        <TextView
+            android:id="@+id/imdb_ratings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/genre_chip_bg"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:text="@{tvFirebase.imdb_rating}"
+            app:layout_constraintEnd_toEndOf="@+id/poster"
+            app:layout_constraintTop_toTopOf="@+id/poster"
+            tools:text="8.2" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

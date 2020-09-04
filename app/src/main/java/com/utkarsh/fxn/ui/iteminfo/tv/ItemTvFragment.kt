@@ -1,16 +1,24 @@
 package com.utkarsh.fxn.ui.iteminfo.tv
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
+import com.google.android.flexbox.*
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import com.utkarsh.fxn.data.firebase.TvFirebase
 import com.utkarsh.fxn.databinding.FragmentItemTvBinding
-import com.utkarsh.fxn.databinding.FragmentIteminfoBinding
-import com.utkarsh.fxn.ui.searchresult.tv.SearchTvViewModel
+import com.utkarsh.fxn.ui.searchresult.SearchListAdapter
+import com.utkarsh.fxn.ui.searchresult.tv.SearchTvFragmentDirections
+
 
 class ItemTvFragment : Fragment() {
 
@@ -23,6 +31,11 @@ class ItemTvFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentItemTvBinding.inflate(inflater)
+
+
+        //(activity as AppCompatActivity).supportActionBar?.hide()
+
+
 
         binding.lifecycleOwner = this
 
@@ -61,6 +74,21 @@ class ItemTvFragment : Fragment() {
             toast.show()
         }
 
+        binding.genreRecyclerView.adapter=GenreListAdapter()
+
+        val layoutManager = FlexboxLayoutManager(context)
+        layoutManager.justifyContent = JustifyContent.FLEX_START
+        layoutManager.flexWrap=FlexWrap.WRAP
+        binding.genreRecyclerView.layoutManager = layoutManager
+
+        binding.similarRecyclerView.adapter=SearchListAdapter(SearchListAdapter.MovieClickListener {
+                id ->
+            Toast.makeText(context, "Works??", Toast.LENGTH_LONG).show()
+
+            findNavController().navigate(SearchTvFragmentDirections.actionGlobalItemTvFragment(id))
+
+        })
+
 
 //        //find why this not working !!!!!!!!
 //        itemTvViewModel.iconClicked.observe(viewLifecycleOwner, Observer {
@@ -72,12 +100,37 @@ class ItemTvFragment : Fragment() {
 
 
 
+        //add to list button
+
+        binding.addToList.setOnClickListener{
+            var firebaseDatabase = Firebase.database
+            var dbreference = firebaseDatabase.getReference("users")
+            val auth = Firebase.auth
+            val uid = auth.uid
+
+            val tmdb = id.toString()
+            val imdbRating= binding.imdbScore.text.toString()
+            val name  = binding.title.text.toString()
+            val posterPath = binding.posterPathHelper.text.toString()
+            val year = binding.yearHelper.text.subSequence(0,4).toString()
+
+
+            var tvFirebaseObject = TvFirebase(tmdb,imdbRating,name,posterPath,year)
+
+            dbreference.child("$uid/tv/$tmdb").setValue(tvFirebaseObject)
+
+            Toast.makeText(context,"Added",Toast.LENGTH_SHORT).show()
+
+        }
+
 
 
 
 
         return binding.root
     }
+
+
 
 
 }

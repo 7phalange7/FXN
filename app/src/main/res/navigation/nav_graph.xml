@@ -47,6 +47,9 @@
     <action
         android:id="@+id/action_global_itemTvFragment"
         app:destination="@id/itemTvFragment" />
+    <action
+        android:id="@+id/action_global_itemMovieFragment"
+        app:destination="@id/itemMovieFragment" />
     <fragment
         android:id="@+id/searchMovieFragment"
         android:name="com.utkarsh.fxn.ui.searchresult.movie.SearchMovieFragment"
@@ -60,6 +63,35 @@
             app:argType="integer"
             />
     </fragment>
+    <fragment
+        android:id="@+id/itemMovieFragment"
+        android:name="com.utkarsh.fxn.ui.iteminfo.movie.ItemMovieFragment"
+        android:label="ItemMovieFragment" >
+        <argument
+            android:name="itemiId"
+            app:argType="integer"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/adsFragment"
+        android:name="com.utkarsh.fxn.ui.ads.AdsFragment"
+        android:label="AdsFragment" />
+    <fragment
+        android:id="@+id/exploreFragment"
+        android:name="com.utkarsh.fxn.ui.explore.ExploreFragment"
+        android:label="ExploreFragment" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.utkarsh.fxn.ui.search.SearchFragment"
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_exploreFragment"
+            app:destination="@id/exploreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.utkarsh.fxn.ui.myprofile.ProfileFragment"
+        android:label="ProfileFragment" />
 
 
 </navigation>

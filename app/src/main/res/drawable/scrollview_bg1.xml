@@ -5,5 +5,7 @@
         android:startColor="@color/darkGrey"
         android:endColor="#000000"
         android:angle="315"/>
+    <size android:width="900dp"
+        android:height="1800dp"/>
 
 </shape>

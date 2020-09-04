@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
@@ -16,7 +17,7 @@ class SearchResultFragment : Fragment() {
 
     public var searchTitle: String = ""
 
-//    private lateinit var searchResultViewModel : SearchResultViewModel
+    //    private lateinit var searchResultViewModel : SearchResultViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,8 +25,10 @@ class SearchResultFragment : Fragment() {
     ): View? {
         val binding = FragmentSearchresultBinding.inflate(inflater)
 
-        val args =SearchResultFragmentArgs.fromBundle(requireArguments())
-    searchTitle = args.searchString
+        //(activity as AppCompatActivity).supportActionBar?.show()
+
+        val args = SearchResultFragmentArgs.fromBundle(requireArguments())
+        searchTitle = args.searchString
 
 //
 //        binding.textView.text=args.searchString
@@ -49,15 +52,15 @@ class SearchResultFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val mViewPagerAdapter = SearchViewPagerAdapter(this,searchTitle)
-        view_pager.adapter= mViewPagerAdapter
+        val mViewPagerAdapter = SearchViewPagerAdapter(this, searchTitle)
+        view_pager.adapter = mViewPagerAdapter
         view_pager.setPageTransformer(ZoomOutPageTransformer())
 
         TabLayoutMediator(tabs, view_pager) { tab, position ->
-            if (position==0)
-                tab.text="Movies"
+            if (position == 0)
+                tab.text = "Movies"
             else
-                tab.text="Tv Shows"
+                tab.text = "Tv Shows"
 
 
         }.attach()

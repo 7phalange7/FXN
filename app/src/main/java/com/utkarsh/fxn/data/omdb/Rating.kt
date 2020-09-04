@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Rating(
     @SerializedName("Source")
-    val source: String,
+    var source: String? = null,
     @SerializedName("Value")
-    val value: String
+    var value: String? = null
 )

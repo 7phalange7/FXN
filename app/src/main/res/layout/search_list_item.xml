@@ -16,7 +16,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="250dp"
         android:background="@android:color/transparent"
         android:onClick="@{() -> clicklistener.onClick(resultObject)}"
@@ -30,6 +30,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
+            android:scaleType="centerCrop"
             app:imageUrl="@{resultObject.posterPath}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +47,7 @@
             android:fontFamily="@font/product_sans"
             android:maxLines="1"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:customName="@{resultObject}"
             app:layout_constraintEnd_toEndOf="@+id/poster"
@@ -62,6 +63,7 @@
             android:layout_marginTop="2dp"
             android:fontFamily="sans-serif-light"
             android:textColor="#FFFFFF"
+            android:textSize="12sp"
             app:customYear="@{resultObject}"
             app:layout_constraintStart_toStartOf="@+id/item_name"
             app:layout_constraintTop_toBottomOf="@+id/item_name"
@@ -72,42 +74,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="417dp" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="18dp"
-            android:layout_height="0dp"
-            android:tint="#E4C84A"
-            app:layout_constraintBottom_toBottomOf="@+id/imdb_ratings"
-            app:layout_constraintDimensionRatio="h,1:1"
-            app:layout_constraintEnd_toEndOf="@+id/item_name"
-            app:layout_constraintTop_toTopOf="@+id/imdb_ratings"
-            app:srcCompat="@drawable/ic_baseline_star_24" />
+            app:layout_constraintGuide_begin="125dp" />
 
         <TextView
             android:id="@+id/imdb_ratings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
-            tools:text="8.2"
-            app:imdbRating="@{resultObject}"
+            android:layout_margin="4dp"
+            android:background="@drawable/genre_chip_bg"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
             android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="@+id/item_year"
-            app:layout_constraintEnd_toStartOf="@+id/imageView3"
-            app:layout_constraintTop_toTopOf="@+id/item_year" />
+            android:textSize="12sp"
+            app:imdbRating="@{resultObject}"
+            app:layout_constraintEnd_toEndOf="@+id/poster"
+            app:layout_constraintTop_toTopOf="@+id/poster"
+            tools:text="8.2" />
 
-        <!--        <TextView-->
-        <!--            android:id="@+id/imdb"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:textColor="#FFFFFF"-->
-        <!--            app:imdbMovieRating="@{resultObject}"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toStartOf="@+id/item_type"-->
-        <!--            app:layout_constraintStart_toEndOf="@+id/item_year"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/item_name"-->
-        <!--            app:layout_constraintVertical_bias="0.834"-->
-        <!--            tools:text="7.8" />-->
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

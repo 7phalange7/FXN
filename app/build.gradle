@@ -5,6 +5,9 @@ apply plugin: 'kotlin-android-extensions'
 //binding annotations
 apply plugin: 'kotlin-kapt'
 
+//firebase
+apply plugin: 'com.google.gms.google-services'
+
 //safeargs 1/2
 apply plugin: 'androidx.navigation.safeargs.kotlin'
 
@@ -39,9 +42,25 @@ android {
     }
 
     buildTypes {
+
+        debug{
+            buildConfigField 'String' , "TMDB_APIKEY" , TMDB_API_KEY
+            resValue 'string' , "TMDB_APIKEY" , TMDB_API_KEY
+
+            buildConfigField 'String' , "OMDB_APIKEY" , OMDB_API_KEY
+            resValue 'string' , "OMDB_APIKEY" , OMDB_API_KEY
+
+
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField 'String' , "TMDB_APIKEY" , TMDB_API_KEY
+            resValue 'string' , "TMDB_APIKEY" , TMDB_API_KEY
+
+            buildConfigField 'String' , "OMDB_APIKEY" , OMDB_API_KEY
+            resValue 'string' , "OMDB_APIKEY" , OMDB_API_KEY
         }
     }
 
@@ -90,6 +109,22 @@ dependencies {
     //tabLayout and View Pager2
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation "com.google.android.material:material:1.1.0-beta01"
+
+    //flexlayout
+    implementation 'com.google.android:flexbox:2.0.1'
+
+    //firebase analytics
+    implementation 'com.google.firebase:firebase-analytics:17.2.2'
+
+    //firebase realtime database
+    implementation 'com.google.firebase:firebase-database-ktx:19.3.1'
+    // firebase ui  realtime database
+    implementation 'com.firebaseui:firebase-ui-database:6.2.1'
+
+    //firebase auth
+    implementation 'com.google.firebase:firebase-auth-ktx:19.3.2'
+    // FirebaseUI for Firebase Auth
+    implementation 'com.firebaseui:firebase-ui-auth:6.2.1'
 
 
 }

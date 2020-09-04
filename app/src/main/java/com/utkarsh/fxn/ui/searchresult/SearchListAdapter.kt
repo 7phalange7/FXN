@@ -24,7 +24,7 @@ class SearchListAdapter (private val clickListener: MovieClickListener) :
     class ResultViewHolder(private var binding: SearchListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(result: Result, clickListener: MovieClickListener) {
+            fun bind(result: Result, clickListener: MovieClickListener) {
             binding.resultObject = result
             binding.clicklistener=clickListener
             binding.executePendingBindings()

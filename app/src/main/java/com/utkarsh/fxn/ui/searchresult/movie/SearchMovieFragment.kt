@@ -42,9 +42,9 @@ class SearchMovieFragment(private var searchtitle : String)  : Fragment() {
 
         binding.resultList.adapter= SearchListAdapter(SearchListAdapter.MovieClickListener {
            id ->
-            Toast.makeText(context, "${id}", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "$id", Toast.LENGTH_LONG).show()
 
-            findNavController().navigate(SearchMovieFragmentDirections.actionGlobalItemInfoFragment())
+            findNavController().navigate(SearchMovieFragmentDirections.actionGlobalItemMovieFragment(id))
         })
 
         return binding.root

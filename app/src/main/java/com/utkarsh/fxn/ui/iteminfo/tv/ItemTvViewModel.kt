@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.utkarsh.fxn.api.SearchApiService
+import com.utkarsh.fxn.data.Result
 import com.utkarsh.fxn.data.tmdbTvbyid.tvById
 import kotlinx.coroutines.*
 
@@ -16,6 +17,11 @@ class ItemTvViewModel(private val id: Int) : ViewModel() {
     private val _tvInfo = MutableLiveData<tvById>()
     val tvInf: LiveData<tvById>
         get() = _tvInfo
+
+    private val _resultList = MutableLiveData<List<Result>>()
+    val resultList: LiveData<List<Result>>
+        get() = _resultList
+
 
 //    // 1-> Imdb  2-> Seasons  3-> Episodes  4-> Runtime
 ////    private val _iconClicked = MutableLiveData<Int>()
@@ -29,6 +35,7 @@ class ItemTvViewModel(private val id: Int) : ViewModel() {
 
     init {
         getTvbyId()
+        getSimilarTv()
 
        // _iconClicked.value = 0
     }
@@ -54,6 +61,34 @@ class ItemTvViewModel(private val id: Int) : ViewModel() {
 
             Log.v("utk", "tv show name is $response")
         }
+    }
+
+    private fun getSimilarTv(){
+
+        var response:String
+
+        coroutineScope.launch {
+            var getResultDeferred = SearchApiService.SearchApi.retrofitService.getSimiliarTvbyId(id)
+
+            try {
+                // Await the completion of our Retrofit request
+                var searchResultObject = getResultDeferred.await()
+                _resultList.value=searchResultObject.results
+
+                if(searchResultObject.results[0].name!=null)
+                    response =searchResultObject.results[0].name
+                else
+                    response =searchResultObject.results[0].title
+
+
+            } catch (e: Exception) {
+                response = "Failure: ${e.message}"
+            }
+
+            Log.v("utk",response)
+        }
+
+
     }
 
     override fun onCleared() {

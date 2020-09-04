@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "173021980057",
+    "firebase_url": "https://fxn-fiction.firebaseio.com",
+    "project_id": "fxn-fiction",
+    "storage_bucket": "fxn-fiction.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:173021980057:android:5290335ff324f0f6915f08",
+        "android_client_info": {
+          "package_name": "com.utkarsh.fxn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "173021980057-geivenietc607ek211c1e973j1c1uu1m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.utkarsh.fxn",
+            "certificate_hash": "1fe3f7923633d6ded2f6baf492eca9f86336c31d"
+          }
+        },
+        {
+          "client_id": "173021980057-hfilcdhq1gmn6dui7qd7k41oupsaptru.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtWrCqXadzM8Lu6xL0gtMvkw301dNBFcU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "173021980057-hfilcdhq1gmn6dui7qd7k41oupsaptru.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

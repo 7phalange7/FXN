@@ -16,7 +16,7 @@ class SearchViewPagerAdapter(f:Fragment,private var title:String) : FragmentStat
         return when(position){
             0 -> SearchMovieFragment(title)
             1 -> SearchTvFragment(title)
-            else -> SearchMovieFragment(title)
+            else -> SearchTvFragment(title)
         }
     }
 }

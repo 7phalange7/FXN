@@ -2,6 +2,7 @@ package com.utkarsh.fxn.data.tmdbMoviebyId
 
 
 import com.google.gson.annotations.SerializedName
+import com.utkarsh.fxn.data.tmdbTvbyid.Genre
 
 data class movieById(
     val adult: Boolean,
@@ -9,12 +10,12 @@ data class movieById(
     val backdropPath: String,
     @SerializedName("belongs_to_collection")
     val belongsToCollection: BelongsToCollection,
-    val budget: Int,
+    val budget: Long,
     val genres: List<Genre>,
     val homepage: String,
     val id: Int,
     @SerializedName("imdb_id")
-    val imdbId: String,
+    val imdbId: String?,
     @SerializedName("original_language")
     val originalLanguage: String,
     @SerializedName("original_title")
@@ -29,7 +30,7 @@ data class movieById(
     val productionCountries: List<ProductionCountry>,
     @SerializedName("release_date")
     val releaseDate: String,
-    val revenue: Int,
+    val revenue: Long,
     val runtime: Int,
     @SerializedName("spoken_languages")
     val spokenLanguages: List<SpokenLanguage>,
