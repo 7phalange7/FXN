@@ -20,4 +20,4 @@ TMDB_API_KEY="From TMDb"
 
 Some screenshots :
 
-<img src = "screenshots/1.jpg" height = 400dp> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src = "screenshots/2.jpg" height = 400dp> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src = "screenshots/3.jpg" height = 400dp> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src = "screenshots/ffxn.gif" height = 400dp> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src = "screenshots/1.jpg" height = 700dp> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src = "screenshots/2.jpg" height = 700dp> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src = "screenshots/3.jpg" height = 700dp> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src = "screenshots/ffxn.gif" height = 650dp> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
